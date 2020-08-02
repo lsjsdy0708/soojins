@@ -1,0 +1,308 @@
+<HTML>
+	<HEAD>
+		<TITLE> JAVA 코딩 예제2 </TITLE>
+	</HEAD>
+		<BODY>
+			<BR>
+			<H2><font color="green">
+Q1문제
+</font> </H2>
+<BR>
+			<BR>
+			
+클래스 Q1에서는 if문, while문, for문을 사용할 수 없음<BR>
+필드: 정수를 저장하는 필드 1개 (지정자는 private)<BR>
+생성자 1개<BR>
+ 인자는 없고 필드값을 10으로 지정함<BR>
+메소드: down<BR>
+ 지정자는 public이고, 인자가 없으며 반환값도 없음<BR>
+ 필드값을 1 감소함 (그러나 필드값은 음수가 될 수 없음)<BR>
+메소드: down<BR>
+ 지정자는 public이고, 정수를 1개 인자로 받으며 (양의 정수라고 가정) 반환값은 없음<BR>
+ 필드값을 인자값 만큼 감소함 (그러나 필드값은 음수가 될 수 없고 최소 0까지만 감소함)<BR>
+메소드: print<BR>
+ 지정자는 public이고, 인자가 없으며 반환값도 없음<BR>
+ 필드에 저장된 값을 출력함		<BR>
+<H2><font color="red">
+A1
+</font> </H2>
+<BR>
+<BR>
+public class finalExam_2018_Q1 {<BR>
+	private int a;<BR>
+<BR>
+	public finalExam_2018_Q1() {<BR>
+		a = 10;<BR>
+	}<BR>
+<BR>
+public void down() {<BR>
+	a=Math.max(a-1, 0);<BR>
+<BR>
+}<BR>
+<BR>
+public void down(int b) {<BR>
+	a=Math.max(a-b, 0);<BR>
+}<BR>
+<BR>
+	public void print() {<BR>
+		System.out.println(a);<BR>
+	}<BR>
+}<BR><BR><BR>
+<BR>
+			<H2><font color="green">
+Q2 문제
+</font> </H2>
+<BR>
+			<BR>클래스 이름: Q2<BR>
+			필드: 문자열을 저장하는 필드 1개 (지정자는 private)<BR>
+생성자 1개:<BR>
+ 문자열 1개를 인자로 받아서 필드에 저장함<BR>
+메소드: countChar<BR>
+ 지정자는 public이고, 문자(char)를 1개 인자로 받으며 정수를 반환함<BR>
+ 인자로 받은 문자가 필드에 저장된 문자열에 몇 번 포함되는지 확인하여 반환함<BR>
+ 문자는 대소문자를 구분하지 않고 반복 횟수를 확인함 (예: 인자값이 ‘A’이면 필드 문자열에 ‘a’와 ‘A’를 모두 확인함)<BR>
+클래스 이름: Q2Test<BR>
+메소드 main<BR>
+ 지정자는 public static이고, Scanner를 사용해서 사용자에게 문자열을 하나 입력 받음<BR>
+ 클래스 Q2을 사용해서 사용자가 입력한 문자열에 알파벳 a (a 또는 A)가 몇 개 포함되어 있는지 출력함<BR>
+<H2><font color="red">
+A2
+</font> </H2>
+<BR>
+public class finalExam_2018_Q2 {<BR>
+private String a;<BR>
+public finalExam_2018_Q2(String a) {<BR>
+	this.a=a;<BR>
+}<BR>
+public int countChar(char c) {<BR>
+	String a1=a.toUpperCase();<BR>
+	String a2=(c+"").toUpperCase();<BR>
+	int e=0;<BR>
+	for(int d=0;d(큼)a1.length();d++) {<BR>
+		String v=a1.substring(d,d+1);<BR>
+		if(v.equals(a2)==true) {<BR>
+			e++;<BR>
+		}<BR>
+	}<BR>
+	return e;<BR>
+	<BR><BR><BR>
+	              
+	
+}<BR>
+}<BR>
+<BR><BR><BR>
+import java.util.Scanner;<BR>
+<BR>
+public class finalExam_2018_Q2Test {<BR>
+<BR>
+	public static void main(String[] args) {<BR>
+		// TODO Auto-generated method stub<BR>
+		Scanner a=new Scanner(System.in);<BR>
+		<BR>
+		String b=a.next();<BR>
+		finalExam_2018_Q2 c= new finalExam_2018_Q2(b);<BR>
+		System.out.println(c.countChar('a'));<BR>
+		
+<BR>
+	}<BR>
+<BR>
+}<BR>
+<BR><BR>
+<H2><font color="green">
+Q3 문제
+</font> </H2>
+<BR>
+클래스 이름: Q3B<BR>
+ 클래스 Q3B는 Q3A의 하위클래스    <BR>                                                                                    
+ 클래스 Q3B에는 정수를 저장하는 필드 1개, 생성자 1개, 메소드 m1, 메소드 m2가 있음 (지정자, 인자, 반환값 제약 없음)<BR>
+ Q3Test를 실행하면 아래와 같이 출력됨<BR>
+ 추가로 필드, 생성자, 메소드 구현 시 감점<BR>
+ 클래스 Q3B에서 출력되는 문구는 반드시 “Q3B”로 시작해야 함 (예: System.out.println(“Q3B” + …); )<BR>
+ 즉, 출력되는 “Q3A …” 문구들은 클래스 Q3A의 메소드를 통해 출력된 것임<BR>
+<H2> Q3A </H2><BR>
+public class Q3A {<BR>
+private int a;     <BR>
+public Q3A(int a) {   <BR>
+this.a = a*a;     <BR>
+}         <BR>
+public void m1() {<BR>
+System.out.println("Q3A m1: " + a);   <BR>
+}                 <BR>
+public void m2() {     <BR>
+System.out.println("Q3A m2: " + a);    <BR>
+}    <BR>
+}     <BR>
+<BR>
+<h2>Q3Test</h2><BR>
+public class Q3Test {<BR>
+public static void main(String[] args) {     <BR>
+Q3B q = new Q3B(3);      <BR>
+q.m1();     <BR>
+q.m2();   <BR>
+q = new Q3B(4); <BR>
+q.m1();      <BR>
+q.m2();         <BR>
+q = new Q3B(5);        <BR>
+q.m1();         <BR>
+q.m2();    <BR>
+}                <BR>
+}         <BR><BR>
+<h2>콘솔에 출력되는 화면</h2>
+Q3A m1: 100 <BR>
+Q3B m1: 3   <BR>
+Q3B m2: 3 <BR>
+Q3A m1: 100     <BR>
+Q3B m1: 4   <BR>
+Q3B m2: 4   <BR>
+Q3A m1: 100   <BR>
+Q3B m1: 5   <BR>
+Q3B m2: 5  <BR>   
+<BR>
+<H2><font color="red">
+Q3A 
+</font> </H2>
+<BR>
+package project;<BR>
+<BR>
+public class finalExam_2018_Q3A {          <BR>
+private int a;             <BR>
+public finalExam_2018_Q3A(int a) {           <BR>
+	this.a=a*a;       <BR>
+}                   <BR><BR>
+         
+public void m1() {<BR>
+	System.out.println("Q3A m1:"+a);            <BR>
+	           <BR>
+}        <BR>
+public void m2() {        <BR>
+	System.out.println("Q3A m2:"+a);          <BR>
+}                                         <BR>
+}           <BR>
+     <BR>
+
+<H2><font color="red">
+Q3B
+</font> </H2>
+<BR>
+public class finalExam_2018_Q3B extends finalExam_2018_Q3A {<BR>
+	public int b;      <BR>
+	            <BR>                
+	public finalExam_2018_Q3B(int b) {    <BR>
+		super(b);         <BR>
+		super(a,b);  <BR>
+		this.b=b;  <BR>
+		 <BR>
+	}    <BR>                
+	public void c1() {<BR>
+		super.m1(); <BR>                   
+		System.out.println("Q3B m1:"+b);      <BR>
+	}<BR>
+	public void m2() {          <BR>
+		super.m2();      <BR>
+		System.out.println("Q3B m2:"+b);      <BR>
+	}       <BR>
+	             <BR>
+
+}    <BR>
+      <BR>
+      <H2><font color="red">
+Q3Test
+</font> </H2><BR>
+      public class finalExam_2018_Q3Test {<BR>
+                                     <BR>
+	public static void main(String[] args) {      <BR>
+		// TODO Auto-generated method stub  <BR>         
+		finalExam_2018_Q3B q=new finalExam_2018_Q3B(3);     <BR>
+		q.m1();              <BR>
+		q.m2();           <BR>
+		            <BR>
+		q=new finalExam_2018_Q3B(4);          <BR>
+		q.m1();         <BR>
+		q.m2();   <BR>
+		            <BR>
+		q=new finalExam_2018_Q3B(5);      <BR>
+		q.m1(); <BR>
+		q.m2();   <BR>
+		          <BR>
+
+	}<BR>
+     <BR> 
+}     <BR>
+     <BR> <BR> <BR>
+     <H2><font color="green">
+Q4 문제
+</font> </H2>
+<BR>
+     클래스 이름: Q4<BR>
+입력된 문자열이 사용 가능한 패스워드인지 확인해보는 클래스이며, 사용가능한 패스워드의 조건은 다음과 같음:    <BR>
+1) 패스워드의 길이는 5이상이여야 함<BR>
+2) 패스워드는 반드시 숫자 1 또는 2를 포함해야 함       <BR>
+클래스 Q4에 필드와 생성자는 없고 메소드는 모두 public static으로 구현함          <BR>
+메소드: checkLength <BR>
+ 지정자는 public static이고, 문자열을 1개 인자로 받으며 boolean을 반환함      <BR>
+ 인자로 받은 문자열의 길이가 5이상인지 반환함 (5이상이면 true 반환) <BR>
+메소드: checkNum        <BR>
+ 지정자는 public static이고, 문자열을 1개 인자로 받으며 boolean을 반환함     <BR>
+ 인자로 받은 문자열이 숫자 1 또는 2를 포함하는지 반환함 (포함하면 true 반환)    <BR>
+메소드: addRand                  <BR>
+ 지정자는 public static이고, 문자열을 1개를 인자로 받으며 문자열을 반환함         <BR>
+ 인자로 받은 문자열에 1부터 9 사이 (1과 9 포함) 랜덤정수를 끝에 추가하여 반환함    <BR>
+메소드: main                             <BR>
+ Scanner를 사용해서 사용자에게 패스워드(문자열)를 입력 받고 다음을 실행함<BR>
+1) 패스워드의 길이는 5이상인지 확인하여 출력함        <BR>
+2) 패스워드는 반드시 숫자 1 또는 2를 포함하는지 확인하여 출력함        <BR>
+3) 패스워드 끝에 1부터 9사이 랜덤정수를 추가하여 출력함    <BR>
+<BR>
+     <H2><font color="red">
+A4 
+</font> </H2>
+<BR>
+import java.util.Random;<BR>
+import java.util.Scanner;    <BR>
+public class finalExam_2018_Q4 {    <BR>
+	                    <BR>
+	                                 <BR>
+public static boolean checkLength(String a) {        <BR>
+	boolean v=a.length()>=5;         <BR>
+	return v;           <BR>
+}             <BR>
+      <BR>
+      <BR>
+public static boolean checkNum(String b) {<BR>
+	String a="1";   <BR>
+	String o="2";           <BR>
+	boolean q = false;    <BR>            
+	for(int t=0;t<b.length();t++) {<BR>
+		String w=b.substring(t, t+1);       <BR>
+		if(w.equals(a)) {      <BR>
+			q=true;      <BR>
+			break;              <BR>
+		}            <BR>
+		else if(w.equals(o)) {  <BR>
+			q=true;   <BR>
+			break;     <BR>
+		}		<BR>
+		else    <BR>
+			q=false;     <BR>
+	}<BR>
+	return q;           <BR>
+}<BR>
+public static String addRand(String a) {<BR>
+	Random z=new Random();     <BR>
+	int y=z.nextInt(9)+1;      <BR>
+	String d=(y+"");        <BR>
+	return a.concat(d);    <BR>
+	           <BR>
+}<BR>
+	public static void main(String[] args) {<BR>
+		// TODO Auto-generated method stub<BR>
+		Scanner a=new Scanner(System.in);   <BR>
+		String f=a.next();                 <BR>
+		System.out.println(checkLength(f));   <BR>
+		System.out.println(checkNum(f));     <BR>
+		System.out.println(addRand(f));      <BR>
+<BR>
+	}                           <BR>
+                  <BR>
+}                     <BR>
+<BR>
