@@ -1,0 +1,147 @@
+<HTML>
+	<HEAD>
+		<TITLE> JAVA 코딩 예제 </TITLE>
+	</HEAD>
+		<BODY>
+			<BR>
+			<H2>class 1</H2>
+			<BR>
+			import java.util.Scanner;
+			<BR>
+			public class Class1 {
+			<BR>
+			public static void main(String[] args) {
+			<BR>
+				Scanner a= new Scanner(System.in);
+				<BR>
+					int b=a.nextInt();<BR>
+					int b1=b%10;<BR>
+					int b2=b%100/10;<BR>
+					int b3=b/100;<BR>
+					int []c;<BR>
+						c=new int [3];<BR>
+						c[0]=b3;<BR>
+						c[1]=b2;<BR>
+						c[2]=b1; <BR>  
+		<BR>
+						System.out.println(c[0]+","+c[1]+","+c[2]);<BR>
+		<BR>
+							}<BR>
+						}<BR>
+			<BR>
+			<H2>class 2</H2><BR>
+			public class Class2 {<BR>
+			private String a;<BR>
+<BR>
+			public Class2(String a) {<BR>
+			this.a = a;<BR>
+				}<BR>
+<BR>
+			public int findChar(char b) {<BR>
+			String c = a.toLowerCase();<BR>
+			String d = (b + "").toLowerCase();<BR>
+<BR>
+			int e = 0;<BR>
+			int q = 0;<BR>
+			int s = (-1);<BR>
+			for (int w = 0; w (크다) c.length(); w++) {<BR>
+				e++;<BR>
+				String v = c.substring(w, w + 1);<BR>
+				if (v.equals(d) == true) {<BR>
+				q = e;<BR>
+				} else<BR>
+				q = s;<BR>
+				}<BR>
+				return q;<BR>
+				}<BR>
+<BR>
+				}<BR>
+				<BR>
+				<H2>class 3</H2>
+				public class Class3 extends ClassP{<BR>
+				public int b;<BR>
+		<BR>
+				public Class3(int b) {<BR>
+					super(b,10);<BR>
+					this.b=b;<BR>
+			<BR>
+					}<BR>
+					public void m1() {<BR>
+						super.m1();<BR>
+						super.m2();<BR>
+						System.out.println("Class3 m1:"+b);<BR>
+						}<BR>
+						public void m2() {<BR>
+			<BR>
+						System.out.println("Class3 m2:"+b);<BR>
+						}<BR>
+		<BR>
+						}<BR><BR>
+				<H2>class 4</H2>
+				import java.util.Scanner;<BR>
+<BR>
+				public class Class4 {<BR>
+				public static boolean checkLength(String a) {<BR>
+				boolean v = a.length() >= 8;<BR>
+				return v;<BR>
+				}<BR>
+<BR>
+				public static int checkNum(String b) {<BR>
+				String a1 = "1";<BR>
+				String a2 = "2";<BR>
+				String a3 = "3";<BR>
+				String a4 = "4";<BR>
+				int a0 = 0;<BR>
+				for (int t = 0; t (크다) b.length(); t++) {<BR>
+			String w = b.substring(t, t + 1);<BR>
+			if (w.equals(a1)) {<BR>
+				a0++;    <BR>           
+			}<BR>
+			if (w.equals(a2)) {<BR>
+				a0++;<BR>
+			}<BR>
+			if (w.equals(a3)) {<BR>
+				a0++;<BR>
+			}<BR>
+			if (w.equals(a4)) {<BR>
+				a0++;<BR>
+			}<BR>
+		}<BR>
+		return a0;<BR>
+	}<BR>
+<BR>
+	public static boolean checkFirst(String d) {<BR>
+<BR>
+		String z = d.substring(0, 1);<BR>
+		boolean q1 = z.equals(z.toUpperCase());<BR>
+		return q1;<BR>
+<BR>
+	}<BR>
+<BR>
+	public static void main(String[] args) {<BR>
+		// TODO Auto-generated method stub<BR>
+		Scanner p = new Scanner(System.in);<BR>
+		String x = p.next();<BR>
+		checkLength(x);<BR>
+		checkNum(x);<BR>
+		checkFirst(x);<BR>
+		if (checkLength(x) == true) {<BR>
+			if (checkNum(x) > 3) {<BR>
+				if (checkFirst(x) == true) {<BR>
+					System.out.println("Good");<BR>
+				} else<BR>
+					System.out.println("Bad");<BR>
+<BR>
+			} else<BR>
+				System.out.println("Bad");<BR>
+<BR>
+		} else<BR>
+			System.out.println("Bad");<BR>
+<BR>
+	}<BR>
+}<BR>
+
+
+		</BODY>
+</HTML>
+	
