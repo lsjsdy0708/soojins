@@ -1,0 +1,191 @@
+<HTML>
+
+	<HEAD>
+		<TITLE> 최종 성적 계산하는 코드 만들기 </TITLE>
+	</HEAD>
+		<BODY>
+			<BR>
+			<h2>[최종성적 계산 기준]</h2>
+ 최종성적은 100점(100%) 기준으로 계산됨<BR>
+ 최종성적은 3번의 시험점수와 출석점수로 계산됨<BR>
+최종성적(100%) = 시험1(30%) + 시험2(30%) + 시험3(30%) + 출석점수(10%)<BR>
+ 시험점수: 각 시험 총점은 100점이지만 최종성적에는 각 30점(30%)로 환산되어 계산함<BR>
+ 출석점수: 출석점수는 총 10%이고, 결석은 1% 감점, 지각은 0.5% 감점이 적용되며 3번의 결석과 3번의 지각까지는 감점이 없음. 출석점수가 음수가 될 수는 없음.<BR>
+
+<BR><BR><BR>
+	<h2>[code]</h2>
+package project;<BR>
+<BR>
+import java.util.Scanner;<BR>
+                       <BR>
+public class Grade {<BR>
+	public static int id;<BR>
+	public static double score;<BR>
+<BR>
+	public static double average(double a, double b, double c) { //메소드1: 점수평균<BR>
+		return ((a + b + c) / 3);<BR>
+	}<BR>
+<BR>
+	public static double median(double d, double e, double f) { //메소드2: 중간값<BR>
+		double k;<BR>
+		if (e > d) {<BR>
+			k = d;<BR>
+			d = e;<BR>
+			e = k;   <BR>
+		}<BR>
+		if (f > d) {<BR>
+			k = d;<BR>
+			d = f; <BR>
+			f = k;<BR>
+		}<BR>
+		if (e < f) {<BR>
+			k = e;<BR>
+			e = f;   <BR>    
+			f = k;      <BR>
+		}<BR>
+		return (e);<BR>
+	}<BR>
+<BR>
+	public static double attend(int absence, int late) { //메소드3: 출석점수<BR>
+		double b = absence * 1;<BR>
+		double c = late * 0.5;<BR>
+		if (absence > 3) {<BR>
+			if ( late > 3) {   <BR>
+				c = c - 1.5;<BR>
+				b = (b - 3);<BR>
+			}<BR>
+			if (3>= late ) { <BR>
+				c = 0;<BR>
+				b = (b - 3);<BR>
+			}<BR>
+		} else if (3>= absence ) {<BR>
+			if ( late > 3) { <BR>
+				c = (c - 1.5);<BR>
+				b = 0;<BR>
+			}<BR>
+			if (3>= late) {<BR>
+				c = 0;<BR>
+				b = 0;<BR>
+			}<BR>
+<BR>
+		}<BR>
+		if (c + b > 10.0)<BR>
+			return (10.0 - 10.0);<BR>
+		else<BR>
+			return (10.0 - c - b);<BR>
+		<BR>
+             <BR>
+	}        <BR>
+            <BR>
+	public static void total(double c, double d, double e, int a, int b) { //메소드4: 총점        <BR>
+                                <BR>
+		double absence = a * 1;        <BR>
+		double late = b * 0.5;     <BR>
+		double attend;      <BR>
+		if (a > 3) {       <BR>
+			if (b > 3) {    <BR>
+				late = late - 1.5;   <BR>
+				absence = absence - 3;  <BR>
+			} else if (3>= b ) {     <BR>
+				late = 0; <BR>
+				absence = absence - 3;         <BR>
+			}           <BR>
+		} else if (3>=a ) {      <BR>
+			if (b > 3) {<BR>
+				late = late - 1.5;   <BR>
+				absence = 0;    <BR>
+			} else if ( 3>= b) {<BR>
+				late = 0;<BR>
+				absence = 0;     <BR>
+			}   <BR>
+		}    <BR>
+		attend = (10.0 - absence - late);      <BR>
+		if (absence + late > 10.0)<BR>
+			score = ((c + d + e) * 0.3);<BR>
+		else           <BR>
+			score = ((c + d + e) * 0.3) + attend;  <BR>
+                                                           <BR>
+		System.out.println(score);<BR>
+	}<BR>
+<BR>
+	public static boolean isA() {  //메소드5: 학점<BR>
+		boolean aa;       <BR>
+		if (score >= 90)       <BR>
+			aa = true;       <BR>
+		else                <BR>
+			aa = false;    <BR>
+		return (aa);       <BR>
+	}                      <BR>
+                  <BR>                                                
+	public static int sumID(int a) { //메소드6: 학번, 학번합<BR>
+		int b = 0;                        <BR>
+		int sum = 0;          <BR>
+		while (a >= 1) {      <BR>
+			b = a % 10;       <BR>
+			a = a / 10;    <BR>
+<BR>
+			sum += b;    <BR>
+                 <BR>
+		}            <BR>
+		return (sum);  <BR>
+                  <BR>
+	}<BR>
+             <BR>
+	public static void main(String[] args) {  //메소드7: 메인메소드<BR>
+                                <BR>
+		System.out.println("============================");    <BR>
+		System.out.println("Welcome to grade calculator!");    <BR>
+		System.out.println("============================");    <BR>
+<BR>
+		Scanner input = new Scanner(System.in);<BR>
+		System.out.print("Enter student ID: ");      <BR>
+		int id = input.nextInt();              <BR>  
+		System.out.print("Sum of ID: ");       <BR>
+		System.out.println(sumID(id));         <BR>
+		<BR>
+		        <BR>
+		while (true) {     <BR>
+			System.out.println();           <BR>
+			System.out.print("Continue?(Y/N): ");      <BR>
+			char answer = input.next().charAt(0);    <BR>
+			if (answer == 'N') {               <BR>  
+				System.out.println();           <BR>
+				System.out.println("[Finish]");   <BR>
+				break;                   <BR>
+			}<BR>
+                      <BR>
+			else if (answer == 'Y') {         <BR>
+				System.out.println("----------");         <BR>
+                                     <BR>
+				System.out.print("Exam 1: ");     <BR>
+				double q = input.nextDouble();    <BR>
+				System.out.print("Exam 2: ");      <BR>
+				double w = input.nextDouble();      <BR>
+				System.out.print("Exam 3: ");    <BR>
+				double e = input.nextDouble();      <BR>
+				System.out.print("Absence: ");      <BR>
+				int r = input.nextInt();         <BR>
+				System.out.print("Late: ");         <BR>
+				int t = input.nextInt();         <BR>
+<BR>
+				System.out.println("----------");        <BR>
+				System.out.println("Exam average:" + average(q, w, e));     <BR>
+				System.out.println("Exam median:" + median(q, w, e));<BR>
+				System.out.println("Attendance score:" + attend(r, t));            <BR>
+				System.out.print("Final grade:");      <BR>
+				total(q, w, e, r, t);                     <BR>
+				if ((isA() == true))                    <BR>
+					System.out.println(">>>> Grade is A!");       <BR>
+				else                            <BR>
+					System.out.print("");        <BR>
+				System.out.println("----------");         <BR>
+				                      <BR>
+				continue;        <BR>
+			}         <BR>
+		}         <BR>
+	}            <BR>
+}            <BR>
+<BR>
+		</BODY>
+</HTML>
+	
