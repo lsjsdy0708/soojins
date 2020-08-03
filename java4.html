@@ -1,0 +1,143 @@
+<HTML>
+
+	<HEAD>
+		<h1> 신용 카드 정리하는 코드 작성 </h1>
+	</HEAD>
+		<BODY><br>
+		1) point: 신용카드 총 포인트를 저장하는 int 자료형 필드<br>
+2) pointPerc: 신용카드 사용금액의 몇 %가 포인트로 적립되는지를 저장하는 double 자료형 필드 (예: 0.05가 저장되면 사용금액의 5% 만큼의 포인트가 적립됨)<br>
+<h2>메소드1: 생성자 </h2><br>
+CreditCard의 생성자를 호출하여 사용자 이름과 사용한도를 저장함 (단, 사용자 이름은 영문 대문자로 변환하여 저장함)<br>
+ 포인트 적립비율이 2%가 되도록 필드 pointPerc에 저장된 값을 변경함<br>
+ 신용카드 번호를 랜덤 생성하여 저장함. 단, 신용카드 번호는 반드시 8자리 숫자이고, 첫 숫자는 항상 9임 (예: 90000000, 91234567, 90101010, 99999999)<br><br>
+<h2>메소드2 : use </h2><br>
+(신용카드를 사용할때 결제금액을 통해 총 사용금액 및 포인트를 업데이트하는 메소드)<br>
+ 수정자를 public 으로 지정 (static 아님)<br>
+ 결제금액을 나타내는 int 자료형 인자를 1개 받고 반환값은 없음<br>
+ 현재까지 신용카드 사용금액(필드 balance)에 결제금액을 더해주고, 총 포인트(필드 point)도 업데이드함. 포인트는 (결제금액 × pointPerc) 만큼 추가됨.<br>
+그러나 신용카드 한도 초과로 인해 결제금액을 추가할 수 없는 경우에는 "Over limit!" 이라고 출력함 (이 경우에는 신용카드 총 사용금액 및 포인트를 업데이트하지 않음)<br><br>
+<h2>메소드3 : print </h2><br>
+(신용카드 정보를 출력하는 메소드)<br>
+메소드 print는 다음과 같이 6줄을 출력함   <br>
+1) "---------------"<br>
+2) 사용자 영문명 출력  <br>
+3) 신용카드 번호 출력   <br>
+4) 총 사용금액 출력     <br>
+5) 총 포인트 출력      <br>
+6) "---------------"  <br>
+메소드 print를 호출하여 사용자, 카드번호, 사용금액, 카드 한도를 출력함        <br>
+사용자에게 결제금액을 입력 받음 (0 이상 정수라고 가정함)          <br>
+ 입력된 결제금액이 0이면 “END PROGRAM”을 출력하고 바로 종료함     <br>
+ 0이 아닌 경우, 결제금액이 반영된 카드 정보를 출력함 (카드 한도가 넘는 경우에는 결제를 반영하지 않음)         <br>
+사용자가 0을 입력할때까지 이 과정을 반복함    <br>
+<br><br><br>
+<h2>[code] </h2>
+<h3>CreditCard </h3><br>
+public class CreditCard {<br>
+                       <br>
+	private int number; //신용카드번호           <br>
+	private String owner; //사용자 영문명      <br>
+	protected int balance; //총 사용금액      <br>
+	protected int maxBalance; //카드 사용한도  <br>
+                                            <br>
+	//클래스 CreditCard의 생성자 (owner와 maxBalance에 값을 저장함)    <br>
+	public CreditCard(String owner, int maxBalance) {    <br>
+		this.owner=owner;               <br>                    
+		this.maxBalance=maxBalance;     <br>
+	}                                 <br>
+	//필드 number의 setter 메소드           <br>
+	public void setNumber(int number) {         <br>
+		this.number=number;                     <br>
+	}                      <br>
+	public void print() {       <br>
+		System.out.println("Owner: "+owner);             <br>
+		System.out.println("Number: "+number);<br>
+		System.out.println("Balance: "+balance);    <br>
+	}                  <br>                             
+}    <br>
+       <br><br><br><br><br>
+       <h3>CreditCard point </h3><br>
+       package project;<br>
+                  <br>
+import java.util.Random;        <br>
+                          <br>
+public class CreditCardPoint extends CreditCard {                <br>
+	private int point;      <br>
+	private double pointPerc;    <br>
+                         <br>
+	public CreditCardPoint(String owner, int maxBalance) {      <br>         
+		super(owner.toUpperCase(), maxBalance); // 상위클래스 생성자 호출     <br>
+                                                                                       <br>
+		<br>
+                   <br>
+		pointPerc = 0.02;       <br>
+                      <br>
+		Random num = new Random();  <br>
+		setNumber(90000000 + (num.nextInt(10000000)));    <br>
+	}<br>
+         <br>
+	public void use(int amount) { // amount=결제금액 balance와 point값 설정    <br>
+		if (balance+amount> maxBalance ) {<br>
+			System.out.println();     <br>
+			System.out.println("Over limit!");<br>
+			balance=balance;<br>
+			point=point;      <br>
+			            <br>
+		}          <br>
+		else{     <br>
+			balance+=amount; <br>                            
+		    point = point + (int) (amount * pointPerc);  <br> 
+		}                      <br>                 
+	}                 <br>
+               <br>
+	public void print() {  //상위클래스의 메소드print 호출하여 사용자 정보 출력<br>
+		System.out.println("---------------");  <br>
+		super.print();                <br>         
+		System.out.println("Point: " + point);      <br>
+		System.out.println("---------------");   <br>
+        <br>
+	}   <br>
+        <br>
+}    <br><br><br><br><br>
+<h3>Cardmanage </h3><br>
+package project;<br>
+               <br>
+import java.util.Scanner;           <br>
+            <br>
+public class CardManage {    <br>
+                      <br>
+	public static void main(String[] args) {  //이름과 사용한도를 입력받아 메소드print호출하여 정보 출력<br>
+		Scanner a = new Scanner(System.in);      <br>
+		System.out.print("First name: ");   <br>
+		String firstName = a.next();        <br>
+		System.out.print("Last name: ");<br>
+		String lastName = a.next();       <br>
+		System.out.print("Max balance: ");    <br>
+		int maxBalance = a.nextInt();         <br>
+                                                      <br>
+		CreditCardPoint b = new CreditCardPoint(firstName + " " + lastName, maxBalance);     <br><br>
+		b.print(); //시작    <br>   
+                               <br>
+		while (true) { //반복  <br>
+<br>
+			System.out.println();  <br>
+			System.out.print("Useage amount: ");     <br>
+			int amount = a.nextInt();    <br>
+			b.use(amount);     <br>
+			                              <br>
+			if (amount == 0) {                 //0입력할때         <br>
+				System.out.println();        <br>
+				System.out.print("END PROGRAM");         <br>
+				break;        <br>
+			}          <br>
+			else {       <br>
+				b.print();     <br>
+			}     <br>
+		}       <br>
+	}       <br>
+}        <br>   
+        <br>   
+        <br>
+		</BODY>
+</HTML>
+	
